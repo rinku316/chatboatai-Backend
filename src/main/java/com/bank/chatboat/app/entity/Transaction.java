@@ -18,6 +18,7 @@ public class Transaction {
 	private int accountId;
 	
 	@Column
+	
 	private double amount;
 	
 	@Enumerated(EnumType.STRING)

@@ -1,6 +1,7 @@
 package com.bank.chatboat.app.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.chatboat.app.entity.Transaction;
 import com.bank.chatboat.app.service.BankaiService;
 
 
@@ -24,11 +26,7 @@ public class BankaiController {
 
     private Map<String, String> userState = new HashMap<>();
 
-    @GetMapping("/balance/{id}")
-    public double getBalance(@PathVariable int id) {
-        return bis.getBalance(id);
-    }
-
+    
     @PostMapping("/chat")
     public Map<String, String> chat(@RequestBody Map<String, String> req) {
 
@@ -71,4 +69,22 @@ public class BankaiController {
 
         return Map.of("reply", "I didn't understand. Try asking 'check balance'");
     }
+    
+    
+    
+    @GetMapping("/balance/{id}")
+    public double getBalance(@PathVariable int id) {
+        return bis.getBalance(id);
+    }
+    
+    
+    @GetMapping("/transactions/{id}")
+    public List<Transaction> getTransactions(@PathVariable int id) {
+    	return bis.getTransaction(id);
+    }
+    
+    
+    
+    
+
 }
